@@ -1,5 +1,6 @@
-package com.developer.SpringMySQL.models;
+package com.developer.SpringMySQL.daos;
 
+import com.developer.SpringMySQL.models.AppUsers;
 import org.springframework.data.repository.CrudRepository;
 
 /**
