@@ -6,7 +6,10 @@
 package com.developer.SpringMySQL.daos;
 
 import com.developer.SpringMySQL.models.Questions;
+import com.developer.SpringMySQL.models.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -14,4 +17,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface QuestionRepo extends CrudRepository<Questions, Integer>{
     
+    @Query (value= "select * from questions where id = :id", nativeQuery = true)
+    public User getQuestion(@Param("id") String id);
 }

@@ -21,12 +21,12 @@
     <class>com.developer.SpringMySQL.models.Province</class>
     <class>com.developer.SpringMySQL.models.Jobs</class>
     <class>com.developer.SpringMySQL.models.Family</class>
-    <class>com.developer.SpringMySQL.models.TestScore</class>
     <class>com.developer.SpringMySQL.models.University</class>
     <class>com.developer.SpringMySQL.models.Ptkp</class>
     <class>com.developer.SpringMySQL.models.ProcessStatus</class>
     <class>com.developer.SpringMySQL.models.WorkingExp</class>
     <class>com.developer.SpringMySQL.models.Questions</class>
+    <class>com.developer.SpringMySQL.models.TestScore</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hr_recruitment?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

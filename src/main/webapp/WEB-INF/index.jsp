@@ -25,6 +25,7 @@ tr:nth-child(even) {
     <div>
         <a href="/candidate">candidate</a>
         <a href="/question">Question</a>
+        <a href="/psychotest">Psychotest</a>
     </div>
 
 

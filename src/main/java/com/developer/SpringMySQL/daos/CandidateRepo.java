@@ -6,12 +6,18 @@
 package com.developer.SpringMySQL.daos;
 
 import com.developer.SpringMySQL.models.Candidate;
+import com.developer.SpringMySQL.models.ProcessStatus;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
  * @author Rizky
- */
-public interface CandidateRepo extends CrudRepository<Candidate,Integer>{
-    
+ **/
+public interface CandidateRepo extends CrudRepository<Candidate, Integer> {
+
+    @Query(value = "select * from process_status where status = :status", nativeQuery = true)
+    public ProcessStatus getCandidate2(@Param("status") String status);
+
 }

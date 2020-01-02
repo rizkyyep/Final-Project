@@ -36,9 +36,9 @@
                 <th>Jawaban</th>
                 <th>Action</th>
             </tr>
-            <c:forEach var = "list" items = "${listQuestion}">
-                
+            <c:forEach var = "list" items = "${listQuestion}" varStatus="loop">
                 <tr>
+                    <td><c:out value="${loop.count}"/></td>
                     <td>${list.id}</td>
                     <td>${list.question}</td>
                     <td>${list.a}</td>

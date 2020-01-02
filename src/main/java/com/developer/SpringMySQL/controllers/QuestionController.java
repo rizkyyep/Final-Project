@@ -48,7 +48,7 @@ public class QuestionController {
         java.util.Date date = sdf1.parse(startDate);
         java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
 
-        ModelAndView mv = new ModelAndView("redirect:/");
+        ModelAndView mv = new ModelAndView("redirect:/question");
         Questions questions;
         if (!id.isEmpty()) {
             questions = (Questions) questionRepo.findOne(Integer.parseInt(id));
@@ -65,14 +65,6 @@ public class QuestionController {
         questions.setCreated(sqlStartDate);
         questions.setAnswer(answer);
         questionRepo.save(questions);
-//        if (!id.isEmpty()) {
-//            users = (AppUsers) appRepo.findOne(Integer.parseInt(id));
-//        } else {
-//            users = new AppUsers();
-//        }
-//        users.setFirstName(firstName);
-//        users.setLastName(lastName);
-//        appRepo.save(users);
         return mv;
     }
 

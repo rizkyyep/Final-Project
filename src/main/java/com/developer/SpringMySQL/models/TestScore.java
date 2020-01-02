@@ -6,6 +6,7 @@
 package com.developer.SpringMySQL.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,7 +35,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TestScore.findAll", query = "SELECT t FROM TestScore t")
     , @NamedQuery(name = "TestScore.findById", query = "SELECT t FROM TestScore t WHERE t.id = :id")
     , @NamedQuery(name = "TestScore.findByScore", query = "SELECT t FROM TestScore t WHERE t.score = :score")
-    , @NamedQuery(name = "TestScore.findByType", query = "SELECT t FROM TestScore t WHERE t.type = :type")})
+    , @NamedQuery(name = "TestScore.findByType", query = "SELECT t FROM TestScore t WHERE t.type = :type")
+    , @NamedQuery(name = "TestScore.findByStartDate", query = "SELECT t FROM TestScore t WHERE t.startDate = :startDate")
+    , @NamedQuery(name = "TestScore.findByEndDate", query = "SELECT t FROM TestScore t WHERE t.endDate = :endDate")
+    , @NamedQuery(name = "TestScore.findByStartTest", query = "SELECT t FROM TestScore t WHERE t.startTest = :startTest")
+    , @NamedQuery(name = "TestScore.findByStatus", query = "SELECT t FROM TestScore t WHERE t.status = :status")})
 public class TestScore implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,16 +48,29 @@ public class TestScore implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
+    @Size(max = 10)
     @Column(name = "score")
     private String score;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "type")
     private String type;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "start_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "end_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
+    @Column(name = "start_test")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTest;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status")
+    private int status;
     @JoinColumn(name = "candidate", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Candidate candidate;
@@ -65,10 +85,11 @@ public class TestScore implements Serializable {
         this.id = id;
     }
 
-    public TestScore(Integer id, String score, String type) {
+    public TestScore(Integer id, Date startDate, Date endDate, int status) {
         this.id = id;
-        this.score = score;
-        this.type = type;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -93,6 +114,38 @@ public class TestScore implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getStartTest() {
+        return startTest;
+    }
+
+    public void setStartTest(Date startTest) {
+        this.startTest = startTest;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Candidate getCandidate() {
